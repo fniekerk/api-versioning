@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIVersioning.Models", "APIVersioning.Models\APIVersioning.Models.csproj", "{2FDF2C9F-BD0A-4E9E-B7F8-5E617CB39FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2. APIVersioning.Models", "APIVersioning.Models\2. APIVersioning.Models.csproj", "{2FDF2C9F-BD0A-4E9E-B7F8-5E617CB39FB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIVersioning.API", "APIVersioning.API\APIVersioning.API.csproj", "{4B81B972-2264-4194-AE66-EFA5C1ACF9C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1. APIVersioning.WebAPI", "APIVersioning.API\1. APIVersioning.WebAPI.csproj", "{4B81B972-2264-4194-AE66-EFA5C1ACF9C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

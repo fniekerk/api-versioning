@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }
-        public Ingredients Ingredients { get; set; } = new Ingredients();
+        public List<string> Ingredients { get; set; } = new List<string>();
     }
 }
