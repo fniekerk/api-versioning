@@ -17,6 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tfg.APIVersioning.Entities"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tfg.APIVersioning.Tests", "Tfg.APIVersioning.Tests\Tfg.APIVersioning.Tests.csproj", "{5F51B717-0A63-46E4-BA0B-0F8ED8FBD5B7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 Utils", "5 Utils", "{BB9AF5A3-6D41-4C32-9DC6-094CD1FA8C5C}"
+	ProjectSection(SolutionItems) = preProject
+		Utils\docker-compose.yml = Utils\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

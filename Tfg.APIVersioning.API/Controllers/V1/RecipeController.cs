@@ -59,6 +59,8 @@ namespace APIVersioning.API.Controllers.V1
                 },
                     Name = "CHEESE BULDAK"
                 };
+                ;
+                _logger.LogInformation("Get Recipe Requested!", recipes);
 
                 return Ok(recipes);
             }
