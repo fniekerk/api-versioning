@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.csproj" />
     <ProjectReference Include="..\Tfg.APIVersioning.Entities\Tfg.APIVersioning.Entities.csproj" />
   </ItemGroup>
 
