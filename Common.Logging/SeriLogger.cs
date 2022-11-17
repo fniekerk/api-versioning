@@ -2,7 +2,12 @@
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using Serilog.Sinks.Grafana.Loki;
+using Serilog.Sinks.Grafana.Loki.HttpClients;
 using System;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Common.Logging
 {
@@ -11,8 +16,6 @@ namespace Common.Logging
         public static Action<HostBuilderContext, LoggerConfiguration> Configure =>
            (context, configuration) =>
            {
-               var elasticUri = context.Configuration.GetValue<string>("ElasticConfiguration:Uri");
-
                configuration.Enrich.FromLogContext()
                 .Enrich.WithMachineName()
                 .WriteTo.Console()
@@ -25,8 +28,17 @@ namespace Common.Logging
                         //NumberOfReplicas = 1
                     }
                  )
+                .WriteTo.GrafanaLoki(context.Configuration["GrafanaLokiConfiguration:Uri"])
                 .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
                 .ReadFrom.Configuration(context.Configuration);
            };
+
+        //public class CustomHttpClient : BaseLokiHttpClient
+        //{
+        //    public override Task<HttpResponseMessage> PostAsync(string requestUri, Stream contentStream)
+        //    {
+        //        return base.PostAsync(requestUri, contentStream);
+        //    }
+        //}
     }
 }
