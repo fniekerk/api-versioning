@@ -33,7 +33,7 @@ namespace APIVersioning.API.Controllers.V1
         /// <remarks>
         /// Sample request:
         /// </remarks>
-        /// <response code="201">Returns the default recipe for Fire Chicken</response>
+        /// <response code="200">Returns the default recipe for Fire Chicken</response>
         /// <response code="500">Problem with the service</response>
         [MapToApiVersion("1.0")]
         [HttpGet]

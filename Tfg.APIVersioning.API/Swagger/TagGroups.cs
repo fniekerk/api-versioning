@@ -31,13 +31,13 @@ namespace Tfg.APIVersioning.API.Swagger
                     {
                         new OpenApiObject
                         {
-                            ["name"] = new OpenApiString("Models"),
-                            ["tags"] = tagList
+                            ["name"] = new OpenApiString("General"),
+                            ["tags"] = genTagList
                         },
                         new OpenApiObject
                         {
-                            ["name"] = new OpenApiString("General"),
-                            ["tags"] = genTagList
+                            ["name"] = new OpenApiString("Models"),
+                            ["tags"] = tagList
                         }
                     }
                 }
