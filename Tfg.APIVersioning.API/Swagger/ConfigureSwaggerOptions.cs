@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using System.Text;
 
-namespace APIVersioning.API
+namespace Tfg.APIVersioning.API.Swagger
 {
     public class ConfigureSwaggerOptions
             : IConfigureNamedOptions<SwaggerGenOptions>
@@ -29,7 +31,11 @@ namespace APIVersioning.API
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
+                options.ExampleFilters();
+                options.EnableAnnotations();
             }
+            options.DocumentFilter<TagGroups>();
+            options.OperationFilter<TagOperation>();
         }
 
         public void Configure(string name, SwaggerGenOptions options)
@@ -44,7 +50,7 @@ namespace APIVersioning.API
             {
                 Title = "API Versioning",
                 Version = description.ApiVersion.ToString(),
-                Description = "An ASP.NET Core Web API for managing ToDo items",
+                Description = File.ReadAllText(@"./Swagger/Recipe.md", Encoding.UTF8),
                 TermsOfService = new Uri("https://example.com/terms"),
                 Contact = new OpenApiContact
                 {
@@ -58,6 +64,21 @@ namespace APIVersioning.API
                 }
             };
 
+            var tagList = new List<OpenApiTag>
+            {
+                new OpenApiTag
+                {
+                    Name = "recipe",
+                    Description = "All about recipes."
+                }
+            };
+
+            var infoDoc = new OpenApiDocument()
+            {
+                Info = info,
+                Tags = tagList
+            };
+            
             if (description.IsDeprecated)
             {
                 info.Description += " This API version has been deprecated.";

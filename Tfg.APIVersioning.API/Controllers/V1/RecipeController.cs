@@ -1,6 +1,9 @@
 ﻿# region Usings
 using APIVersioning.Entities.RecipeV1;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using Tfg.APIVersioning.API.Swagger;
 #endregion
 
 namespace APIVersioning.API.Controllers.V1
@@ -9,6 +12,7 @@ namespace APIVersioning.API.Controllers.V1
     [Route("v{version:apiVersion}/api/recipes")]
     [ApiVersion("1.0")]
     [Produces("application/json")]
+    [Consumes("application/json")]
     public class RecipeController : ControllerBase
     {
         #region Private Properties
@@ -33,9 +37,12 @@ namespace APIVersioning.API.Controllers.V1
         /// <response code="500">Problem with the service</response>
         [MapToApiVersion("1.0")]
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GetV1()
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status409Conflict)]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError)]
+        [SwaggerResponse(StatusCodes.Status503ServiceUnavailable)]
+        public Recipe GetV1()
         {
             try
             {
@@ -62,12 +69,12 @@ namespace APIVersioning.API.Controllers.V1
                 ;
                 _logger.LogInformation("Get Recipe Requested!", recipes);
 
-                return Ok(recipes);
+                return recipes;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Oops! Something weird happened.");
-                return BadRequest(ex.Message);
+                return new Recipe();
             }
         }
     }

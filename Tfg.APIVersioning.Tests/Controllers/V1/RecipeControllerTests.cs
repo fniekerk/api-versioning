@@ -28,11 +28,10 @@ namespace APIVersioning.Tests.Controllers.V1
         public void GetV1_Recipe_Should_Have_Status_Code_200V1_Entity()
         {
             //Act
-            var result = (OkObjectResult)_sut.GetV1();
+            var result = _sut.GetV1();
 
             //Assert
-            result.StatusCode.Should().Be(200);
-            result.Value.Should().NotBeNull()
+            result.Should().NotBeNull()
                 .And.BeOfType<Recipe>();
         }
 
